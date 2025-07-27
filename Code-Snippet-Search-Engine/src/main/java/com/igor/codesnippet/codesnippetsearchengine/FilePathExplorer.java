@@ -1,7 +1,6 @@
 package com.igor.codesnippet.codesnippetsearchengine;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,22 +8,16 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class FileScanner {
+public class FilePathExplorer {
 
-  private final List<String> directories;
-  /**
-   * Initializes the FileScanner with an empty list of directories.
-   */
-  public FileScanner() {
-    directories = new ArrayList<>();
-  }
+  private static final List<String> directories = new ArrayList<>();;
   /**
    * Returns a set of absolute file paths in the specified directory.
    *
    * @param dir the directory to scan
    * @return a set of absolute file paths
    */
-  private Set<String> getAllFilePaths(String dir) {
+  private static Set<String> getAllFilePaths(String dir) {
     File[] files = new File(dir).listFiles();
     if (files == null) return Set.of();
 
@@ -39,7 +32,7 @@ public class FileScanner {
    * @param dir the directory to scan
    * @return an array of absolute paths to subdirectories
    */
-  private String[] listDirectories(String dir) {
+  private static String[] listDirectories(String dir) {
     File[] directories = new File(dir).listFiles(File::isDirectory);
     if (directories == null) return new String[0];
 
@@ -53,7 +46,7 @@ public class FileScanner {
    *
    * @param dir the root directory to begin traversal
    */
-  private void exploreDirectories(String dir) {
+  private static void exploreDirectories(String dir) {
     for(String directory : listDirectories(dir)){
       directories.add(directory);
       exploreDirectories(directory);
@@ -66,7 +59,7 @@ public class FileScanner {
    * @param dir the root directory to scan
    * @return a list of absolute file paths from the entire directory tree
    */
-  public List<String> getFileNames(String dir) {
+  public static List<String> getFileNames(String dir) {
     List<String> fileNames = new ArrayList<>();
     directories.clear();
     directories.add(dir);
