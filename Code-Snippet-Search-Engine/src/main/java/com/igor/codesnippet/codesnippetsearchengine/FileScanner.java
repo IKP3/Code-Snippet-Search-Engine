@@ -29,8 +29,8 @@ public class FileScanner {
             counter++;
           }
         }
-      }catch (FileNotFoundException e) {
-        System.out.println("File not found: " + filePath);
+      }catch (Exception e) {
+        System.out.println("Unable to read file: " + filePath);
       }
       // Store the file name and count if the keyword was found
       if(counter > 0){
