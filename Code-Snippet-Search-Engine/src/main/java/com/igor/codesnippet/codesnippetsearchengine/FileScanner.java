@@ -21,7 +21,7 @@ public class FileScanner {
       counter = 0;
       File file = new File(filePath);
       try(Scanner myReader = new Scanner(file)){
-        // Read each line in th e file
+        // Read each line in the file
         while (myReader.hasNextLine()) {
           String line = myReader.nextLine();
           // Check if the line contains the keyword

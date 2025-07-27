@@ -11,35 +11,49 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.igor.codesnippet.codesnippetsearchengine.MainController">
    <bottom>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                <children>
-                  <TextField fx:id="fileExplorerField" editable="false" onMouseClicked="#openSelectDirectory">
+                  <TextField fx:id="fileExplorerField" editable="false" onMouseClicked="#openSelectDirectory" promptText="Select folder to scan..." HBox.hgrow="ALWAYS">
                      <HBox.margin>
-                        <Insets top="50.0" />
+                        <Insets left="25.0" right="10.0" />
                      </HBox.margin>
                   </TextField>
-                  <TextField fx:id="keywordField">
+                  <TextField fx:id="keywordField" promptText="Enter keyword to search..." HBox.hgrow="ALWAYS">
                      <HBox.margin>
-                        <Insets left="25.0" top="50.0" />
+                        <Insets left="10.0" right="25.0" />
                      </HBox.margin>
                   </TextField>
                </children>
             </HBox>
-            <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchButtonClick" text="Search" />
+            <Button fx:id="searchButton" alignment="CENTER" mnemonicParsing="false" onAction="#searchButtonClick" prefHeight="26.0" prefWidth="123.0" text="Search">
+               <VBox.margin>
+                  <Insets bottom="25.0" top="25.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
    </bottom>
    <center>
-      <TableView fx:id="resultTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn fx:id="fileColumn" prefWidth="75.0" text="File Name" />
-          <TableColumn fx:id="countColumn" prefWidth="75.0" text="Count" />
-        </columns>
-         <BorderPane.margin>
-            <Insets top="50.0" />
-         </BorderPane.margin>
-      </TableView>
+      <VBox prefHeight="200.0" prefWidth="290.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="resultTable" VBox.vgrow="ALWAYS">
+              <columns>
+                <TableColumn fx:id="fileColumn" prefWidth="490.0" text="File Name" />
+                <TableColumn fx:id="countColumn" minWidth="80.0" prefWidth="-1.0" text="Count" />
+              </columns>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" top="20.0" />
+               </VBox.margin>
+            </TableView>
+         </children>
+      </VBox>
    </center>
 </BorderPane>
