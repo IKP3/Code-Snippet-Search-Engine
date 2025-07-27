@@ -2,7 +2,6 @@ package com.igor.codesnippet.codesnippetsearchengine;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.List;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
@@ -10,10 +9,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
 
 public class MainController {
   @FXML
@@ -24,15 +21,19 @@ public class MainController {
   private TableView<TableRowEntry> resultTable;
   @FXML
   private TableColumn<TableRowEntry, String> fileColumn;
-
   @FXML
   private TableColumn<TableRowEntry, Integer> countColumn;
 
+  /*Initializes the TableView columns with property mappings.*/
   @FXML
   public void initialize() {
     fileColumn.setCellValueFactory(rowData -> new ReadOnlyStringWrapper(rowData.getValue().getFileName()));
     countColumn.setCellValueFactory(rowData -> new ReadOnlyObjectWrapper<>(rowData.getValue().getKeywordCount()));
   }
+  /**
+   * Called when the search button is clicked.
+   * Retrieves the folder path and keyword, scans files, and updates the TableView.
+   */
   @FXML
   protected void searchButtonClick() {
     String filepath = fileExplorerField.getText();
@@ -50,6 +51,10 @@ public class MainController {
 
     resultTable.setItems(data);
   }
+  /**
+   * Called when the fileExplorerField is clicked.
+   * Opens a folder selection dialog and updates the field with the selected folder path.
+   */
   @FXML
   protected void openSelectDirectory(){
     DirectoryChooser directoryChooser = new DirectoryChooser();
