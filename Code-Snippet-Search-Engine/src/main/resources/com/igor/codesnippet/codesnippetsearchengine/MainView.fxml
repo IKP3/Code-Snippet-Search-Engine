@@ -7,27 +7,39 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.igor.codesnippet.codesnippetsearchengine.MainController">
    <bottom>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField prefHeight="26.0" prefWidth="371.0">
-               <HBox.margin>
-                  <Insets left="50.0" right="10.0" />
-               </HBox.margin>
-            </TextField>
-            <Button mnemonicParsing="false" text="Button" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="fileExplorerField" editable="false" onMouseClicked="#openSelectDirectory">
+                     <HBox.margin>
+                        <Insets top="50.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <TextField fx:id="keywordField">
+                     <HBox.margin>
+                        <Insets left="25.0" top="50.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchButtonClick" text="Search" />
          </children>
-      </HBox>
+      </VBox>
    </bottom>
    <center>
-      <TableView maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="resultTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="75.0" text="File Name" />
-          <TableColumn prefWidth="75.0" text="Count" />
+          <TableColumn fx:id="fileColumn" prefWidth="75.0" text="File Name" />
+          <TableColumn fx:id="countColumn" prefWidth="75.0" text="Count" />
         </columns>
+         <BorderPane.margin>
+            <Insets top="50.0" />
+         </BorderPane.margin>
       </TableView>
    </center>
 </BorderPane>
